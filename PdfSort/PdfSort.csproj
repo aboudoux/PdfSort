@@ -62,6 +62,7 @@
     <Compile Include="IFolder.cs" />
     <Compile Include="IPdfReader.cs" />
     <Compile Include="IronPdfReader.cs" />
+    <Compile Include="Extractions\PdfExtractor.cs" />
     <Compile Include="PdfSort.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

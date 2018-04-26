@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using PdfSort.Extractions;
 
 namespace PdfSort
 {
@@ -17,7 +19,7 @@ namespace PdfSort
                 var folder = new Folder(args[0]);
 
                 var i = 1;
-                sort.ByDates(folder).ForEach(file => File.Move(file, $"{i++}_{file}"));
+                sort.ByDate(folder).FilesSortedByDates.ForEach(file => File.Move(file, $"{i++}_{file}"));
             }
             catch (Exception e)
             {
@@ -34,5 +36,19 @@ namespace PdfSort
                 );
             Environment.Exit(0);
         }
+    }
+
+    public class PdfSortResult
+    {
+        public PdfSortResult(IReadOnlyList<string> filesSortedByDates, IReadOnlyList<string> filesWithoutDate, IReadOnlyList<string> filesWithMultipleDate)
+        {
+            FilesSortedByDates = filesSortedByDates;
+            FilesWithoutDate = filesWithoutDate;
+            FilesWithMultipleDate = filesWithMultipleDate;
+        }
+
+        public IReadOnlyList<string> FilesSortedByDates { get; }
+        public IReadOnlyList<string> FilesWithoutDate { get; }
+        public IReadOnlyList<string> FilesWithMultipleDate { get; }
     }
 }

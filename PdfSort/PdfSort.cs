@@ -1,52 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using PdfSort.Extractions;
 
 namespace PdfSort
 {
     public class PdfSort
     {
-        private readonly IPdfReader _pdfReader;
+        private PdfExtractor _extractor;
 
-        public PdfSort(IPdfReader pdfReader)
+        public PdfSort(IPdfReader reader)
         {
-            _pdfReader = pdfReader ?? throw new ArgumentNullException(nameof(pdfReader));
+            _extractor = new PdfExtractor(reader);
         }
 
-        public IReadOnlyList<string> ByDates(IFolder folder)
+        public PdfSortResult ByDate(IFolder folder)
         {
-            if (folder == null) throw new ArgumentNullException(nameof(folder));
+            var extractedFiles =  _extractor.GetFilesFrom(folder);
 
-            var pdfFiles = folder.GetPdfFiles();
+            return new PdfSortResult(
+                extractedFiles
+                    .Where(a => a.FoundDates.Count == 1)
+                    .OrderBy(a => a.FoundDates.First())
+                    .Select(a => a.FilePath).ToList(),
+                
+                extractedFiles
+                    .Where(a=>!a.FoundDates.Any())
+                    .Select(a=>a.FilePath).ToList(),
 
-            var parsedFiles = pdfFiles
-                .SelectMany(Dates)
-                .ToList();
-
-            return
-                parsedFiles
-                    .OrderBy(a => a.Date)
-                    .Select(a => a.FilePath)
-                    .ToList(); 
-        }
-
-        private IEnumerable<ParsedFile> Dates(string file)
-        {
-            var content = _pdfReader.Read(file);
-            return Extract.AllDatesFrom(content).Select(p => new ParsedFile(file, p));
-        }
-
-        private class ParsedFile
-        {
-            public ParsedFile(string filePath, DateTime date)
-            {
-                FilePath = filePath;
-                Date = date;
-            }
-
-            public string FilePath { get; }
-            public DateTime Date { get; }
+                extractedFiles
+                    .Where(a=>a.FoundDates.Count > 1)
+                    .Select(a=>a.FilePath)
+                    .ToList());
         }
     }
 }
