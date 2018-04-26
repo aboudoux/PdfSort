@@ -12,11 +12,11 @@ namespace PdfSort
             _extractor = new PdfExtractor(reader);
         }
 
-        public PdfSortResult ByDate(IFolder folder)
+        public ScannedFiles ByDate(IFolder folder)
         {
             var extractedFiles =  _extractor.GetFilesFrom(folder);
 
-            return new PdfSortResult(
+            return new ScannedFiles(
                 extractedFiles
                     .Where(a => a.FoundDates.Count == 1)
                     .OrderBy(a => a.FoundDates.First())

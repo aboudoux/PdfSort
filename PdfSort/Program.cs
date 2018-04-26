@@ -19,7 +19,7 @@ namespace PdfSort
                 var folder = new Folder(args[0]);
 
                 var i = 1;
-                sort.ByDate(folder).FilesSortedByDates.ForEach(file => File.Move(file, $"{i++}_{file}"));
+                sort.ByDate(folder).SortedByDates.ForEach(file => File.Move(file, $"{i++}_{file}"));
             }
             catch (Exception e)
             {
@@ -38,17 +38,17 @@ namespace PdfSort
         }
     }
 
-    public class PdfSortResult
+    public class ScannedFiles
     {
-        public PdfSortResult(IReadOnlyList<string> filesSortedByDates, IReadOnlyList<string> filesWithoutDate, IReadOnlyList<string> filesWithMultipleDate)
+        public ScannedFiles(IReadOnlyList<string> sortedByDates, IReadOnlyList<string> withoutDate, IReadOnlyList<string> withMultipleDate)
         {
-            FilesSortedByDates = filesSortedByDates;
-            FilesWithoutDate = filesWithoutDate;
-            FilesWithMultipleDate = filesWithMultipleDate;
+            SortedByDates = sortedByDates;
+            WithoutDate = withoutDate;
+            WithMultipleDate = withMultipleDate;
         }
 
-        public IReadOnlyList<string> FilesSortedByDates { get; }
-        public IReadOnlyList<string> FilesWithoutDate { get; }
-        public IReadOnlyList<string> FilesWithMultipleDate { get; }
+        public IReadOnlyList<string> SortedByDates { get; }
+        public IReadOnlyList<string> WithoutDate { get; }
+        public IReadOnlyList<string> WithMultipleDate { get; }
     }
 }

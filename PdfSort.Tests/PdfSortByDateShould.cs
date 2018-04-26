@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using FluentAssertions;
-using NFluent;
+﻿using FluentAssertions;
 using NUnit.Framework;
 using PdfSort.Tests.Tools;
 
@@ -22,7 +19,7 @@ namespace PdfSort.Tests
                 .WithFile("test6.pdf", "[05/07/12] well")
                 .ExecuteSortByDates();
 
-            files.FilesSortedByDates.Should().ContainInOrder(
+            files.SortedByDates.Should().ContainInOrder(
                 "test4.pdf",
                 "test6.pdf",
                 "test2.pdf", 
@@ -39,7 +36,24 @@ namespace PdfSort.Tests
                 .WithFile("un2.pdf", "ni la")
                 .ExecuteSortByDates();
 
-            throw new Exception();
+            files.WithoutDate.Should().HaveCount(2);
+            files.SortedByDates.Should().BeEmpty();
+            files.WithMultipleDate.Should().BeEmpty();
+        }
+
+        [Test]
+        public void Return_files_with_multiple_dates_found()
+        {
+            var files = TestPdfSort
+                .Create()
+                .WithFile("un1.pdf", "date du 19/02/2018 et 10-10-18")
+                .WithFile("un2.pdf", "essai 12-AVR-2018 + du 23/02/17")
+                .ExecuteSortByDates();
+
+
+            files.WithMultipleDate.Should().HaveCount(2);
+            files.SortedByDates.Should().BeEmpty();
+            files.WithoutDate.Should().BeEmpty();
         }
     }
 }

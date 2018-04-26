@@ -17,7 +17,7 @@ namespace PdfSort.Extractions
 
         public static IReadOnlyList<DateTime> AllDatesFrom(string content)
         {
-            return dataExtractors.SelectMany(a => a.Extract(content)).ToList();
+            return dataExtractors.SelectMany(extractor => extractor.Extract(content)).ToList();
         }
     }
 }

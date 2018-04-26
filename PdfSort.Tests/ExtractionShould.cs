@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FluentAssertions;
 using NFluent;
 using NUnit.Framework;
 using PdfSort.Extractions;
@@ -24,5 +25,14 @@ namespace PdfSort.Tests
             var dates = Extract.AllDatesFrom(content);
             Check.That(dates).Contains(expectedDates);
         }
+
+        [Test]
+        [TestCase("ceci est un test 01/07/2017 -- coucou")]
+        public void GetOneDateFromContent(string content)
+        {
+            var dates = Extract.AllDatesFrom(content);
+            dates.Should().HaveCount(1);
+        }
+
     }
 }

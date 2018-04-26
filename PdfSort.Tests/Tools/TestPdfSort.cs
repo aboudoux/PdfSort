@@ -21,6 +21,6 @@ namespace PdfSort.Tests.Tools
             return this;
         }
 
-        public PdfSortResult ExecuteSortByDates() => new PdfSort(_pdfReader).ByDate(_folder);
+        public ScannedFiles ExecuteSortByDates() => new PdfSort(_pdfReader).ByDate(_folder);
     }
 }
