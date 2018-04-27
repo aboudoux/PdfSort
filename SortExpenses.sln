@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortExpenses", "PdfSort\SortExpenses.csproj", "{D37D76AA-F1CE-4968-BFF5-D5A5A9376B13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortExpenses", "SortExpenses\SortExpenses.csproj", "{D37D76AA-F1CE-4968-BFF5-D5A5A9376B13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortExpenses.Tests", "PdfSort.Tests\SortExpenses.Tests.csproj", "{37C87914-3635-4218-BA90-32BECFFC03F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortExpenses.Tests", "SortExpenses.Tests\SortExpenses.Tests.csproj", "{37C87914-3635-4218-BA90-32BECFFC03F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
