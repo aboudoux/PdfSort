@@ -36,10 +36,19 @@ namespace PdfSort.Extractions
         public ExtractedFile(string filePath, List<DateTime> foundDates)
         {
             FilePath = filePath;
-            FoundDates = foundDates;
+            FoundDates = foundDates.Distinct(Elements.ByDate()).ToList();
         }
 
         public string FilePath { get; }
         public List<DateTime> FoundDates { get; }
+
+        private class Elements : IEqualityComparer<DateTime>
+        {
+            public bool Equals(DateTime x, DateTime y) => x.Equals(y);
+
+            public int GetHashCode(DateTime obj) => obj.GetHashCode();
+
+            public static Elements ByDate() => new Elements();
+        }
     }
 }

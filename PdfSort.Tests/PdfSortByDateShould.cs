@@ -28,6 +28,28 @@ namespace PdfSort.Tests
         }
 
         [Test]
+
+        public void Return_Files_Sorted_By_Date_Ascendenting_When_Contains_thw_same_date()
+        {
+            var files = TestPdfSort
+                .Create()
+                .WithFile("test1.pdf", "ceci est un test 01/07/2017 -- coucou 01/07/2017")
+                .WithFile("test2.pdf", "NDF du 02-07-2016! and 02/07/2016")
+                .WithFile("test3.pdf", "blabla ==05-07-16 ok 05-07-2016")
+                .WithFile("test4.pdf", "--05-AVR-2012-- essai 05-04-12")
+                .WithFile("test6.pdf", "[05/07/12] well")
+                .ExecuteSortByDates();
+
+            files.SortedByDates.Should().ContainInOrder(
+                "test4.pdf",
+                "test6.pdf",
+                "test2.pdf",
+                "test3.pdf",
+                "test1.pdf");
+        }
+
+
+        [Test]
         public void Return_files_where_dates_are_not_found()
         {
             var files = TestPdfSort
