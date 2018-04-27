@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 
-namespace PdfSort.Extractions
+namespace SortExpenses.Extractions
 {
     public class ExtractDate_ddMMyySlashes : DataExtractor<DateTime>
     {

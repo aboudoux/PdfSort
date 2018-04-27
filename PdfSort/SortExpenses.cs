@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using PdfSort.Extractions;
+﻿using System.Linq;
+using SortExpenses.ExpensesReaders;
+using SortExpenses.Extractions;
+using SortExpenses.Folders;
 
-namespace PdfSort
+namespace SortExpenses
 {
-    public class PdfSort
+    public class SortExpenses
     {
-        private PdfExtractor _extractor;
+        private readonly ExpensesExtractor _extractor;
 
-        public PdfSort(IPdfReader reader)
+        public SortExpenses(IExpensesReader reader)
         {
-            _extractor = new PdfExtractor(reader);
+            _extractor = new ExpensesExtractor(reader);
         }
 
         public ScannedFiles ByDate(IFolder folder)

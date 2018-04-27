@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PdfSort.Extractions
+namespace SortExpenses.Extractions
 {
     public class ExtractDate_ddMMMyyyyDashes : DataExtractor<DateTime>
     {

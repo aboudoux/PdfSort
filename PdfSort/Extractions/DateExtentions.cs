@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 
-namespace PdfSort.Extractions
+namespace SortExpenses.Extractions
 {
     public static class DateExtentions
     {

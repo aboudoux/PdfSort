@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SortExpenses.Folders;
 
-namespace PdfSort.Tests
+namespace SortExpenses.Tests
 {
     public class FakeFolder : IFolder
     {

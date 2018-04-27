@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PdfSort
+namespace SortExpenses
 {
     public static class ConsoleExtentions
     {

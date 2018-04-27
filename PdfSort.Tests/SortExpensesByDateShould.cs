@@ -1,16 +1,16 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
-using PdfSort.Tests.Tools;
+using SortExpenses.Tests.Tools;
 
-namespace PdfSort.Tests
+namespace SortExpenses.Tests
 {
     [TestFixture]
-    public class PdfSortByDateShould
+    public class SortExpensesByDateShould
     {
         [Test]
         public void Return_Files_Sorted_By_Date_Ascendenting_When_Contains_One_Date()
         {
-            var files = TestPdfSort
+            var files = TestSortExpenses
                 .Create()
                 .WithFile("test1.pdf", "ceci est un test 01/07/2017 -- coucou")
                 .WithFile("test2.pdf", "NDF du 02-07-2016!")
@@ -31,7 +31,7 @@ namespace PdfSort.Tests
 
         public void Return_Files_Sorted_By_Date_Ascendenting_When_Contains_thw_same_date()
         {
-            var files = TestPdfSort
+            var files = TestSortExpenses
                 .Create()
                 .WithFile("test1.pdf", "ceci est un test 01/07/2017 -- coucou 01/07/2017")
                 .WithFile("test2.pdf", "NDF du 02-07-2016! and 02/07/2016")
@@ -52,7 +52,7 @@ namespace PdfSort.Tests
         [Test]
         public void Return_files_where_dates_are_not_found()
         {
-            var files = TestPdfSort
+            var files = TestSortExpenses
                 .Create()
                 .WithFile("un1.pdf", "pas de date ici")
                 .WithFile("un2.pdf", "ni la")
@@ -66,7 +66,7 @@ namespace PdfSort.Tests
         [Test]
         public void Return_files_with_multiple_dates_found()
         {
-            var files = TestPdfSort
+            var files = TestSortExpenses
                 .Create()
                 .WithFile("un1.pdf", "date du 19/02/2018 et 10-10-18")
                 .WithFile("un2.pdf", "essai 12-AVR-2018 + du 23/02/17")

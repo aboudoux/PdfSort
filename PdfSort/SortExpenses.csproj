@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D37D76AA-F1CE-4968-BFF5-D5A5A9376B13}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>PdfSort</RootNamespace>
-    <AssemblyName>PdfSort</AssemblyName>
+    <RootNamespace>SortExpenses</RootNamespace>
+    <AssemblyName>SortExpenses</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -58,14 +58,15 @@
     <Compile Include="Extractions\ExtractDate_ddMMyyDashes.cs" />
     <Compile Include="Extractions\ExtractDate_ddMMyyyySlashes.cs" />
     <Compile Include="Extractions\ExtractDate_ddMMyySlashes.cs" />
-    <Compile Include="Folder.cs" />
-    <Compile Include="IFolder.cs" />
-    <Compile Include="IPdfReader.cs" />
-    <Compile Include="IronPdfReader.cs" />
-    <Compile Include="Extractions\PdfExtractor.cs" />
-    <Compile Include="PdfSort.cs" />
+    <Compile Include="Folders\Folder.cs" />
+    <Compile Include="Folders\IFolder.cs" />
+    <Compile Include="ExpensesReaders\IExpensesReader.cs" />
+    <Compile Include="ExpensesReaders\IronExpensesReader.cs" />
+    <Compile Include="Extractions\ExpensesExtractor.cs" />
+    <Compile Include="SortExpenses.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScannedFiles.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

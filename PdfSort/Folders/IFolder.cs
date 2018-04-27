@@ -1,4 +1,4 @@
-﻿namespace PdfSort
+﻿namespace SortExpenses.Folders
 {
     public interface IFolder
     {

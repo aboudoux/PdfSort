@@ -2,9 +2,9 @@
 using System.Globalization;
 using NFluent;
 using NUnit.Framework;
-using PdfSort.Extractions;
+using SortExpenses.Extractions;
 
-namespace PdfSort.Tests
+namespace SortExpenses.Tests
 {
     public class ExtractTests
     {

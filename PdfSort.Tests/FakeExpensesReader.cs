@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using SortExpenses.ExpensesReaders;
 
-namespace PdfSort.Tests
+namespace SortExpenses.Tests
 {
-    public class FakePdfReader : IPdfReader
+    public class FakeExpensesReader : IExpensesReader
     {
         private readonly Dictionary<string, string> _files = new Dictionary<string, string>();
 

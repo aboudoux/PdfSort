@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using FluentAssertions;
 using NFluent;
 using NUnit.Framework;
-using PdfSort.Extractions;
+using SortExpenses.Extractions;
 
-namespace PdfSort.Tests
+namespace SortExpenses.Tests
 {
     [TestFixture]
     public class ExtractionShould

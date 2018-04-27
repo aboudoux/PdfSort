@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using PdfSort.Extractions;
+using SortExpenses.ExpensesReaders;
+using SortExpenses.Folders;
 
-namespace PdfSort
+namespace SortExpenses
 {
     class Program
     {
@@ -15,7 +15,7 @@ namespace PdfSort
 
             try
             {
-                var sort = new PdfSort(new IronPdfReader());
+                var sort = new SortExpenses(new IronExpensesReader());
                 var folder = new Folder(args[0]);
 
                 var i = 1;
@@ -32,23 +32,9 @@ namespace PdfSort
         {
             Console.WriteLine(
                 $"Sort PDF files by date, version {Assembly.GetEntryAssembly().GetName().Version}" + Environment.NewLine + Environment.NewLine +
-                "Usage : PdfSort.exe [folder]" + Environment.NewLine
+                "Usage : SortExpenses.exe [folder]" + Environment.NewLine
                 );
             Environment.Exit(0);
         }
-    }
-
-    public class ScannedFiles
-    {
-        public ScannedFiles(IReadOnlyList<string> sortedByDates, IReadOnlyList<string> withoutDate, IReadOnlyList<string> withMultipleDate)
-        {
-            SortedByDates = sortedByDates;
-            WithoutDate = withoutDate;
-            WithMultipleDate = withMultipleDate;
-        }
-
-        public IReadOnlyList<string> SortedByDates { get; }
-        public IReadOnlyList<string> WithoutDate { get; }
-        public IReadOnlyList<string> WithMultipleDate { get; }
     }
 }

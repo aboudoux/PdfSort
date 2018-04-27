@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PdfSort.Extractions
+namespace SortExpenses.Extractions
 {
     public class ExtractDate_ddMMyyDashes : DataExtractor<DateTime>
     {

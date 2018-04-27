@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace PdfSort
+namespace SortExpenses.ExpensesReaders
 {
-    public class IronPdfReader : IPdfReader
+    public class IronExpensesReader : IExpensesReader
     {
         public string Read(string pdfFilePath)
         {

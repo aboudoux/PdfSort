@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SortExpenses.ExpensesReaders;
+using SortExpenses.Folders;
 
-namespace PdfSort.Extractions
+namespace SortExpenses.Extractions
 {
-    public class PdfExtractor
+    public class ExpensesExtractor
     {
-        private readonly IPdfReader _pdfReader;
+        private readonly IExpensesReader _expensesReader;
 
-        public PdfExtractor(IPdfReader pdfReader)
+        public ExpensesExtractor(IExpensesReader expensesReader)
         {
-            _pdfReader = pdfReader ?? throw new ArgumentNullException(nameof(pdfReader));
+            _expensesReader = expensesReader ?? throw new ArgumentNullException(nameof(expensesReader));
         }
 
         public IReadOnlyList<ExtractedFile> GetFilesFrom(IFolder folder)
@@ -26,7 +28,7 @@ namespace PdfSort.Extractions
 
         private List<DateTime> Dates(string file)
         {
-            var content = _pdfReader.Read(file);
+            var content = _expensesReader.Read(file);
             return Extract.AllDatesFrom(content).ToList();
         }
     }

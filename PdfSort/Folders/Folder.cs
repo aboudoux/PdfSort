@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.IO;
 
-namespace PdfSort
+namespace SortExpenses.Folders
 {
     public class Folder : IFolder
     {

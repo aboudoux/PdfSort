@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace PdfSort.Extractions
+namespace SortExpenses.Extractions
 {
     public abstract class DataExtractor<T>
     {
