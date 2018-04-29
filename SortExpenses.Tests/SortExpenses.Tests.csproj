@@ -69,12 +69,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PdfSort\SortExpenses.csproj">
+    <ProjectReference Include="..\SortExpenses\SortExpenses.csproj">
       <Project>{d37d76aa-f1ce-4968-bff5-d5a5a9376b13}</Project>
       <Name>SortExpenses</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

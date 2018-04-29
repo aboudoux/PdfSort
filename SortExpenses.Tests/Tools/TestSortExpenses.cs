@@ -18,6 +18,6 @@
             return this;
         }
 
-        public ScannedFiles ExecuteSortByDates() => new global::SortExpenses.SortExpenses(_expensesReader).ByDate(_folder);
+        public ScannedFiles ExecuteSortByDates() => new SortExpenses(_expensesReader).ByDate(_folder);
     }
 }
