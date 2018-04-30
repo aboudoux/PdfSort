@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using Fclp;
 using SortExpenses.ExpensesReaders;
 using SortExpenses.Folders;
 
@@ -10,9 +11,11 @@ namespace SortExpenses
     {
         static void Main(string[] args)
         {
-            if (args.IsEmpty())
-                PrintUsage();
 
+            /*var parser = new FluentCommandLineParser<Arguments>();
+            parser.Setup(arg => arg.Folder)
+                .As('f')
+*/
             try
             {
                 var sort = new SortExpenses(new IronExpensesReader());
@@ -36,5 +39,11 @@ namespace SortExpenses
                 );
             Environment.Exit(0);
         }
+    }
+
+    public class Arguments
+    {
+        public string Folder { get; set; }
+        public bool RenameFiles { get; set; }
     }
 }
