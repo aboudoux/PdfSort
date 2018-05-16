@@ -12,7 +12,8 @@ namespace SortExpenses.Tests
         [Test]
         public void SetupWithSimpleArgument()
         {
-            var args = new[] {"-d", "c:\\temp", "-r"};
+            const string directory = "c:\\";
+            var args = new[] {"-d", directory, "-r"};
 
             var f = new FluentCommandLineParser<TestArguments>();
 
@@ -30,7 +31,7 @@ namespace SortExpenses.Tests
             var result = f.Parse(args);
           
             
-            f.Object.Directory.Should().Be("c:\\temp");
+            f.Object.Directory.Should().Be(directory);
             f.Object.RenameFiles.Should().BeTrue();
         }
 
