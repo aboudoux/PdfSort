@@ -1,5 +1,4 @@
-﻿using System;
-using IronOcr;
+﻿using IronOcr;
 
 namespace SortExpenses.ExpensesReaders
 {

@@ -65,6 +65,7 @@
     <Compile Include="FakeFolder.cs" />
     <Compile Include="FakeExpensesReader.cs" />
     <Compile Include="FluentCommandLineTests.cs" />
+    <Compile Include="SimpleExpenseReaderShould.cs" />
     <Compile Include="SortExpensesByDateShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\TestSortExpenses.cs" />
