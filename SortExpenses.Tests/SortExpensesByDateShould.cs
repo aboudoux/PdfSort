@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
+using SortExpenses.ExpensesReaders;
+using SortExpenses.Folders;
 using SortExpenses.Tests.Tools;
 
 namespace SortExpenses.Tests
@@ -76,6 +78,17 @@ namespace SortExpenses.Tests
             files.WithMultipleDate.Should().HaveCount(2);
             files.SortedByDates.Should().BeEmpty();
             files.WithoutDate.Should().BeEmpty();
+        }
+
+        [Test]
+        public void sort_real_pdf_files_with_simple_read()
+        {
+            var sort = new SortExpenses(new SimpleExpensesReader());
+            var result = sort.ByDate(new Folder(Expenses.Folder));
+
+            result.SortedByDates.Should().NotBeEmpty();
+            result.WithMultipleDate.Should().NotBeEmpty();
+            result.WithoutDate.Should().NotBeEmpty();
         }
     }
 }

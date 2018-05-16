@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using SortExpenses.ExpensesReaders;
@@ -13,27 +14,20 @@ namespace SortExpenses
             try
             {
                 var arguments = Arguments.Parse(args);
-                var sort = new SortExpenses(new IronExpensesReader());
+                var sort = new SortExpenses(new SimpleExpensesReader());
                 var folder = new Folder(arguments.Folder);
 
                 Console.WriteLine("Extracting files (please wait)");
                 var getFiles = sort.ByDate(folder);
 
-                Console.WriteLine("Liste des fichiers correctements tirés");
-                Console.WriteLine("--------------------------------");
-                getFiles.SortedByDates.ForEach(Console.WriteLine);
-                Console.WriteLine("--------------------------------");
-
-                Console.WriteLine("Liste des fichiers dont la date n'est pas trouvées");
-                Console.WriteLine("--------------------------------");
-                getFiles.WithoutDate.ForEach(Console.WriteLine);
-                Console.WriteLine("--------------------------------");
-
-
+                WriteAll(getFiles.SortedByDates, "Liste des fichiers correctements triés", ConsoleColor.Green);
+                WriteAll(getFiles.WithMultipleDate, "Liste des fichiers dont plusieurs dates ont été trouvées", ConsoleColor.Yellow);
+                WriteAll(getFiles.WithoutDate, "Liste des fichiers dont la date n'est pas trouvée", ConsoleColor.Red);
+                
                 if (arguments.RenameFiles)
                 {
                     var i = 1;
-                    getFiles.SortedByDates.ForEach(file => File.Move(file, $"{i++}_{file}"));
+                    getFiles.SortedByDates.ForEach(file => File.Move(file, Path.Combine(Path.GetDirectoryName(file),"Sorted_" + i++ + "_" + Path.GetFileName(file))));
                 }
             }
             catch (ArgumentsException e)
@@ -48,11 +42,23 @@ namespace SortExpenses
             }
         }
 
+        private static void WriteAll(IReadOnlyList<string> list, string title, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(title);            
+            Console.WriteLine("--------------------------------");
+            list.ForEach(Console.WriteLine);
+            Console.WriteLine("--------------------------------");
+            Console.ResetColor();
+        }
+
         private static void PrintUsage()
         {
             Console.WriteLine(
                 $"Sort PDF files by date, version {Assembly.GetEntryAssembly().GetName().Version}" + Environment.NewLine + Environment.NewLine +
-                "Usage : SortExpenses.exe [folder]" + Environment.NewLine
+                "Usage : SortExpenses.exe -f [folder] (options)" + Environment.NewLine +
+                "options are : " + Environment.NewLine +
+                "\t-r : Rename all files ordered by date"
                 );
             Environment.Exit(0);
         }

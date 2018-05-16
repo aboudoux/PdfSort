@@ -13,6 +13,7 @@ namespace SortExpenses.Extractions
             {"MARS", "Mar"},
             {"AVR", "Apr"},
             {"MAI", "May"},
+            {"MRI", "May"},
             {"JUIN", "Jun"},
             {"JUIL", "Jul"},
             {"AOUT", "Aug"},

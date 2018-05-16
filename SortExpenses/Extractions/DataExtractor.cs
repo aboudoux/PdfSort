@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace SortExpenses.Extractions
@@ -12,7 +13,16 @@ namespace SortExpenses.Extractions
         {
             var result = new List<T>();
             foreach (var element in Regex.Matches(content, RegexPattern))
-                result.Add(Parse(element.ToString()));
+            {
+                try
+                {
+                    result.Add(Parse(element.ToString()));
+                }
+                catch (Exception e)
+                {
+                }
+            }
+
             return result;
         }
     }

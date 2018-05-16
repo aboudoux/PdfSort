@@ -16,6 +16,9 @@ namespace SortExpenses
             parser.Setup(a => a.RenameFiles)
                 .As('r');
 
+            parser.Setup(a => a.TakeFirstDateIfMultipleDate)
+                .As('i');
+
             parser.SetupHelp("h", "?");
 
             var result = parser.Parse(args);
@@ -27,6 +30,8 @@ namespace SortExpenses
 
         public string Folder { get; private set; }
         public bool RenameFiles { get; private set; }
+
+        public bool TakeFirstDateIfMultipleDate { get; private set; }
     }
 
     public class ArgumentsException : Exception
