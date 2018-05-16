@@ -11,7 +11,6 @@ namespace SortExpenses.Tests
     {
         [Test]
         [TestCase(1, "Crédit")]
-        [TestCase(6, "Crédit")]
         public void ReadSomePdf(int pdfNumber, string expectedStart)
         {
             var reader = new SimpleExpensesReader();
