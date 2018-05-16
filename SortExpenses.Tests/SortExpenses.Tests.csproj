@@ -70,6 +70,19 @@
     <Compile Include="Tools\TestSortExpenses.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="NDF\1.pdf" />
+    <None Include="NDF\10.pdf" />
+    <None Include="NDF\11.pdf" />
+    <None Include="NDF\12.pdf" />
+    <None Include="NDF\13.pdf" />
+    <None Include="NDF\2.pdf" />
+    <None Include="NDF\3.pdf" />
+    <None Include="NDF\4.pdf" />
+    <None Include="NDF\5.pdf" />
+    <None Include="NDF\6.pdf" />
+    <None Include="NDF\7.pdf" />
+    <None Include="NDF\8.pdf" />
+    <None Include="NDF\9.pdf" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
