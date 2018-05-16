@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using Fclp;
 using SortExpenses.ExpensesReaders;
 using SortExpenses.Folders;
 
@@ -11,18 +10,36 @@ namespace SortExpenses
     {
         static void Main(string[] args)
         {
-
-            /*var parser = new FluentCommandLineParser<Arguments>();
-            parser.Setup(arg => arg.Folder)
-                .As('f')
-*/
             try
             {
+                var arguments = Arguments.Parse(args);
                 var sort = new SortExpenses(new IronExpensesReader());
-                var folder = new Folder(args[0]);
+                var folder = new Folder(arguments.Folder);
 
-                var i = 1;
-                sort.ByDate(folder).SortedByDates.ForEach(file => File.Move(file, $"{i++}_{file}"));
+                Console.WriteLine("Extracting files (please wait)");
+                var getFiles = sort.ByDate(folder);
+
+                Console.WriteLine("Liste des fichiers correctements tirés");
+                Console.WriteLine("--------------------------------");
+                getFiles.SortedByDates.ForEach(Console.WriteLine);
+                Console.WriteLine("--------------------------------");
+
+                Console.WriteLine("Liste des fichiers dont la date n'est pas trouvées");
+                Console.WriteLine("--------------------------------");
+                getFiles.WithoutDate.ForEach(Console.WriteLine);
+                Console.WriteLine("--------------------------------");
+
+
+                if (arguments.RenameFiles)
+                {
+                    var i = 1;
+                    getFiles.SortedByDates.ForEach(file => File.Move(file, $"{i++}_{file}"));
+                }
+            }
+            catch (ArgumentsException e)
+            {
+                Console.WriteLine(e.Message);
+                PrintUsage();
             }
             catch (Exception e)
             {
@@ -39,11 +56,5 @@ namespace SortExpenses
                 );
             Environment.Exit(0);
         }
-    }
-
-    public class Arguments
-    {
-        public string Folder { get; set; }
-        public bool RenameFiles { get; set; }
     }
 }

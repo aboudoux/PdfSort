@@ -25,11 +25,24 @@ namespace SortExpenses.Tests
                 .As('r')
                 .WithDescription("Rename files that matches");
 
+            f.SetupHelp("h", "?");
 
-            var arguments = f.Parse(args);
+            var result = f.Parse(args);
+          
             
             f.Object.Directory.Should().Be("c:\\temp");
             f.Object.RenameFiles.Should().BeTrue();
+        }
+
+        [Test]
+        public void UseArgumentsConsole()
+        {
+            var args = new[] { "-f", "c:\\temp", "-r" };
+            var arguments =  Arguments.Parse(args);
+            arguments.Should().NotBeNull();
+
+            arguments.Folder.Should().Be("c:\\temp");
+            arguments.RenameFiles.Should().BeTrue();
         }
     }
 
