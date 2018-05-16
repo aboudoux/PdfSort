@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using SortExpenses.ExpensesReaders;
 using SortExpenses.Folders;
+using SortExpenses.Sorting.Strategies;
 
 namespace SortExpenses
 {
@@ -14,11 +15,12 @@ namespace SortExpenses
             try
             {
                 var arguments = Arguments.Parse(args);
-                var sort = new SortExpenses(new SimpleExpensesReader());
-                var folder = new Folder(arguments.Folder);
 
                 Console.WriteLine("Extracting files (please wait)");
-                var getFiles = sort.ByDate(folder);
+                var getFiles = Sorting.SortExpenses
+                                .WithReader(new SimpleExpensesReader())
+                                .ForFolder(new Folder(arguments.Folder))
+                                .By(new SortByDate());
 
                 WriteAll(getFiles.SortedByDates, "Liste des fichiers correctements triés", ConsoleColor.Green);
                 WriteAll(getFiles.WithMultipleDate, "Liste des fichiers dont plusieurs dates ont été trouvées", ConsoleColor.Yellow);

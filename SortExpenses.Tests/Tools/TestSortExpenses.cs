@@ -1,4 +1,6 @@
-﻿namespace SortExpenses.Tests.Tools
+﻿using SortExpenses.Sorting.Strategies;
+
+namespace SortExpenses.Tests.Tools
 {
     public class TestSortExpenses
     {
@@ -18,6 +20,16 @@
             return this;
         }
 
-        public ScannedFiles ExecuteSortByDates() => new SortExpenses(_expensesReader).ByDate(_folder);
+        public ScannedFiles ExecuteSortByDates() =>
+            Sorting.SortExpenses
+                .WithReader(_expensesReader)
+                .ForFolder(_folder)
+                .By(new SortByDate());
+
+        public ScannedFiles ExecuteMergedSortByDates() =>
+            Sorting.SortExpenses
+                .WithReader(_expensesReader)
+                .ForFolder(_folder)
+                .By(new MergeSingleDateAndMultipleDate());
     }
 }

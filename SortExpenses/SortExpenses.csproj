@@ -71,7 +71,10 @@
     <Compile Include="ExpensesReaders\IExpensesReader.cs" />
     <Compile Include="ExpensesReaders\IronExpensesReader.cs" />
     <Compile Include="Extractions\ExpensesExtractor.cs" />
-    <Compile Include="SortExpenses.cs" />
+    <Compile Include="Sorting\Strategies\ISortingStrategy.cs" />
+    <Compile Include="Sorting\Strategies\MergeSingleDateAndMultipleDate.cs" />
+    <Compile Include="Sorting\Strategies\SortByDate.cs" />
+    <Compile Include="Sorting\SortExpenses.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScannedFiles.cs" />

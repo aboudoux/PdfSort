@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using SortExpenses.ExpensesReaders;
 using SortExpenses.Folders;
+using SortExpenses.Sorting.Strategies;
 using SortExpenses.Tests.Tools;
 
 namespace SortExpenses.Tests
@@ -50,7 +51,6 @@ namespace SortExpenses.Tests
                 "test1.pdf");
         }
 
-
         [Test]
         public void Return_files_where_dates_are_not_found()
         {
@@ -71,20 +71,29 @@ namespace SortExpenses.Tests
             var files = TestSortExpenses
                 .Create()
                 .WithFile("un1.pdf", "date du 19/02/2018 et 10-10-18")
-                .WithFile("un2.pdf", "essai 12-AVR-2018 + du 23/02/17")
-                .ExecuteSortByDates();
+                .WithFile("un2.pdf", "essai 12-AVR-2018 + du 15/02/17")
+                .WithFile("un3.pdf", "essai 17/01/2017")
+                .ExecuteMergedSortByDates();
 
 
             files.WithMultipleDate.Should().HaveCount(2);
-            files.SortedByDates.Should().BeEmpty();
+            files.SortedByDates.Should().HaveCount(3).And.ContainInOrder("un3.pdf", "un1.pdf", "un2.pdf");
             files.WithoutDate.Should().BeEmpty();
+        }
+
+        [Test]
+        public void Return_merged_sorted_files()
+        {
+
         }
 
         [Test]
         public void sort_real_pdf_files_with_simple_read()
         {
-            var sort = new SortExpenses(new SimpleExpensesReader());
-            var result = sort.ByDate(new Folder(Expenses.Folder));
+            var result = Sorting.SortExpenses
+                .WithReader(new SimpleExpensesReader())
+                .ForFolder(new Folder(Expenses.Folder))
+                .By(new SortByDate());
 
             result.SortedByDates.Should().NotBeEmpty();
             result.WithMultipleDate.Should().NotBeEmpty();
