@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SortExpenses.Extractions;
 
@@ -6,12 +7,12 @@ namespace SortExpenses.Sorting.Strategies
 {
     public class SortByDate : ISortingStrategy
     {
-        public virtual IReadOnlyList<string> GetFilesSortedByDate(IReadOnlyList<ExtractedFile> extractedFiles)
+        public virtual IReadOnlyList<(string fileName, DateTime firstDate)> GetFilesSortedByDate(IReadOnlyList<ExtractedFile> extractedFiles)
         {
             return extractedFiles
                 .Where(a => a.FoundDates.Count == 1)
                 .OrderBy(a => a.FoundDates.First())
-                .Select(a => a.FilePath).ToList();
+                .Select(a => (a.FilePath, a.FoundDates.First())).ToList();
         }
 
         public IReadOnlyList<string> GetFilesWithMultipleDates(IReadOnlyList<ExtractedFile> extractedFiles)

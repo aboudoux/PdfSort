@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using NUnit.Framework;
 using SortExpenses.ExpensesReaders;
 using SortExpenses.Folders;
@@ -23,11 +24,11 @@ namespace SortExpenses.Tests
                 .ExecuteSortByDates();
 
             files.SortedByDates.Should().ContainInOrder(
-                "test4.pdf",
-                "test6.pdf",
-                "test2.pdf", 
-                "test3.pdf", 
-                "test1.pdf");
+                ("test4.pdf",new DateTime(2012,04,05)),
+                ("test6.pdf",new DateTime(2012,07,05)),
+                ("test2.pdf",new DateTime(2016,07,02)), 
+                ("test3.pdf",new DateTime(2016,07,05)), 
+                ("test1.pdf",new DateTime(2017,07,01)));
         }
 
         [Test]
@@ -44,11 +45,11 @@ namespace SortExpenses.Tests
                 .ExecuteSortByDates();
 
             files.SortedByDates.Should().ContainInOrder(
-                "test4.pdf",
-                "test6.pdf",
-                "test2.pdf",
-                "test3.pdf",
-                "test1.pdf");
+                ("test4.pdf", new DateTime(2012,04,05)),
+                ("test6.pdf", new DateTime(2012,07,05)),
+                ("test2.pdf", new DateTime(2016,07,02)),
+                ("test3.pdf", new DateTime(2016,07,05)),
+                ("test1.pdf", new DateTime(2017,07,01)));
         }
 
         [Test]
@@ -77,7 +78,11 @@ namespace SortExpenses.Tests
 
 
             files.WithMultipleDate.Should().HaveCount(2);
-            files.SortedByDates.Should().HaveCount(3).And.ContainInOrder("un3.pdf", "un1.pdf", "un2.pdf");
+            files.SortedByDates.Should().HaveCount(3).And.ContainInOrder(
+                ("un3.pdf",new DateTime(2017,01,17)), 
+                ("un1.pdf",new DateTime(2018,02,19)),
+                ("un2.pdf",new DateTime(2018,04,12)));
+
             files.WithoutDate.Should().BeEmpty();
         }
        

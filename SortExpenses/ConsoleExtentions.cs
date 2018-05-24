@@ -10,7 +10,7 @@ namespace SortExpenses
             return args.Length == 0;
         }
 
-        public static void ForEach(this IEnumerable<string> enumerable, Action<string> action)
+        public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
         {
             foreach (var en in enumerable)
                 action(en);
