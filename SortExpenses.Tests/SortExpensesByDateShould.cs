@@ -80,20 +80,14 @@ namespace SortExpenses.Tests
             files.SortedByDates.Should().HaveCount(3).And.ContainInOrder("un3.pdf", "un1.pdf", "un2.pdf");
             files.WithoutDate.Should().BeEmpty();
         }
-
-        [Test]
-        public void Return_merged_sorted_files()
-        {
-
-        }
-
+       
         [Test]
         public void sort_real_pdf_files_with_simple_read()
         {
             var result = Sorting.SortExpenses
                 .WithReader(new SimpleExpensesReader())
                 .ForFolder(new Folder(Expenses.Folder))
-                .By(new SortByDate());
+                .With<SortByDate>();
 
             result.SortedByDates.Should().NotBeEmpty();
             result.WithMultipleDate.Should().NotBeEmpty();

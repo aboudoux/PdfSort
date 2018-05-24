@@ -24,12 +24,12 @@ namespace SortExpenses.Tests.Tools
             Sorting.SortExpenses
                 .WithReader(_expensesReader)
                 .ForFolder(_folder)
-                .By(new SortByDate());
+                .With<SortByDate>();
 
         public ScannedFiles ExecuteMergedSortByDates() =>
             Sorting.SortExpenses
                 .WithReader(_expensesReader)
                 .ForFolder(_folder)
-                .By(new MergeSingleDateAndMultipleDate());
+                .With<MergeSingleDateAndMultipleDate>();
     }
 }

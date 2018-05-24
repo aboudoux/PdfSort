@@ -17,6 +17,7 @@ namespace SortExpenses.Tests
             new object[] {"test 01-10-2016", new List<DateTime>() {new DateTime(2016, 10, 1)}},
             new object[] {"test 14-04-18", new List<DateTime>() {new DateTime(2018,4, 14)}},
             new object[] {"test 16-AVR-2018", new List<DateTime>() {new DateTime(2018,4, 16)}},
+            new object[] {"test 10-mai-2018", new List<DateTime>() {new DateTime(2018,5, 10)}},
         };
 
         [Test, TestCaseSource(nameof(_datesCases))]
@@ -34,5 +35,18 @@ namespace SortExpenses.Tests
             dates.Should().HaveCount(1);
         }
 
+        [Test]
+        public void ExtractDatesInSameOrder()
+        {
+            var content = "ici le 10-mai-2017 pour le 15/01/2016 au 20-01-16 se déroulera le 12/02/18";
+            var dates = Extract.AllDatesFrom(content);
+
+            dates.Should().HaveCount(4);
+            dates.Should().ContainInOrder(
+                new DateTime(2017, 05, 10), 
+                new DateTime(2016, 01, 15),
+                new DateTime(2016, 01, 20), 
+                new DateTime(2018, 02, 12));
+        }
     }
 }

@@ -9,14 +9,14 @@ namespace SortExpenses.Extractions
         protected abstract string RegexPattern { get; }
         protected abstract T Parse(string data);
 
-        public IReadOnlyList<T> Extract(string content)
+        public IReadOnlyList<(string source, T parsedData)> Extract(string content)
         {
-            var result = new List<T>();
+            var result = new List<(string source, T parsedData)>();
             foreach (var element in Regex.Matches(content, RegexPattern))
             {
                 try
                 {
-                    result.Add(Parse(element.ToString()));
+                    result.Add((element.ToString(),Parse(element.ToString())));
                 }
                 catch (Exception e)
                 {

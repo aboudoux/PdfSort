@@ -25,10 +25,13 @@ namespace SortExpenses.Sorting
             return this;
         }
 
-        public ScannedFiles By(ISortingStrategy strategy)
-            => new ScannedFiles(
+        public ScannedFiles With<T>() where T : ISortingStrategy, new()
+        {
+            var strategy = new T();
+            return new ScannedFiles(
                 strategy.GetFilesSortedByDate(_extractedFiles),
                 strategy.GetFilesWithoutDates(_extractedFiles),
                 strategy.GetFilesWithMultipleDates(_extractedFiles));
+        }
     }
 }

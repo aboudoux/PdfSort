@@ -27,7 +27,7 @@ namespace SortExpenses.Extractions
 
         protected override DateTime Parse(string data)
         {
-           return Normalize(data).ToDate(DateExtentions.ddMMMyyyyDashes);
+           return Normalize(data.ToUpper()).ToDate(DateExtentions.ddMMMyyyyDashes);
         }
 
         private string Normalize(string format) => _monthMapping.Aggregate(format, (current, pair) => current.Replace(pair.Key, pair.Value));

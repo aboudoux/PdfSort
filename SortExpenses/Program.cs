@@ -20,7 +20,7 @@ namespace SortExpenses
                 var getFiles = Sorting.SortExpenses
                                 .WithReader(new SimpleExpensesReader())
                                 .ForFolder(new Folder(arguments.Folder))
-                                .By(new SortByDate());
+                                .With(new SortByDate());
 
                 WriteAll(getFiles.SortedByDates, "Liste des fichiers correctements triés", ConsoleColor.Green);
                 WriteAll(getFiles.WithMultipleDate, "Liste des fichiers dont plusieurs dates ont été trouvées", ConsoleColor.Yellow);
