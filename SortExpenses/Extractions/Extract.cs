@@ -13,6 +13,8 @@ namespace SortExpenses.Extractions
             new ExtractDate_ddMMyySlashes(),
             new ExtractDate_ddMMyyDashes(),
             new ExtractDate_ddMMMyyyyDashes(),
+            new ExtractDateWithDayInOneDigitLonMonthNameAndYear(),
+            new ExtractDateWithDayInTwoDigitsLongMonthNameAndYear()
         };
 
         public static IReadOnlyList<DateTime> AllDatesFrom(string content)

@@ -57,10 +57,13 @@
   <ItemGroup>
     <Compile Include="Arguments.cs" />
     <Compile Include="ConsoleExtentions.cs" />
+    <Compile Include="ExpensesReaders\Pdf.cs" />
     <Compile Include="ExpensesReaders\SimpleExpensesReader.cs" />
     <Compile Include="Extractions\DataExtractor.cs" />
     <Compile Include="Extractions\DateExtentions.cs" />
     <Compile Include="Extractions\Extract.cs" />
+    <Compile Include="Extractions\ExtractDateWithDayInOneDigitLonMonthNameAndYear.cs" />
+    <Compile Include="Extractions\ExtractDateWithDayInTwoDigitsLongMonthNameAndYear.cs" />
     <Compile Include="Extractions\ExtractDate_ddMMMyyyyDashes.cs" />
     <Compile Include="Extractions\ExtractDate_ddMMyyyyDashes.cs" />
     <Compile Include="Extractions\ExtractDate_ddMMyyDashes.cs" />

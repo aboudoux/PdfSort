@@ -13,6 +13,8 @@ namespace SortExpenses.Extractions
         public const string ddMMMyyDashes = "dd-MMM-yy";
         public const string ddMMMyyyySlashes = "dd/MMM/yyyy";
         public const string ddMMMyySlashes = "dd/MMM/yy";
+        public const string ddMMMMyyyyWhitespace = "dd MMMM yyyy";
+        public const string dMMMMyyyyWhitespace = "d MMMM yyyy";
 
         public static DateTime ToDate(this string source, string format)
         {
