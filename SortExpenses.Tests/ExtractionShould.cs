@@ -19,7 +19,8 @@ namespace SortExpenses.Tests
             new object[] {"test 16-AVR-2018", new List<DateTime>() {new DateTime(2018,4, 16)}},
             new object[] {"test 10-mai-2018", new List<DateTime>() {new DateTime(2018,5, 10)}},
             new object[] {"test du lundi 8 juillet 2018", new List<DateTime>(){ new DateTime(2018,07,08)}, } ,
-            new object[] {"test du mardi 12 mars 2018", new List<DateTime>(){ new DateTime(2018,03,12)}, } 
+            new object[] {"test du mardi 12 mars 2018", new List<DateTime>(){ new DateTime(2018,03,12)}, },
+            new object[] {"test du Vendredi 14 Juin 2019", new List<DateTime>(){ new DateTime(2019,06,14)}, },
         };
 
         [Test, TestCaseSource(nameof(_datesCases))]

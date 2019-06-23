@@ -28,7 +28,7 @@ namespace SortExpenses.ExpensesReaders
             for (var page = 0; page < _reader.NumberOfPages; page++)
             {
                 var text = PdfTextExtractor.GetTextFromPage(_reader, page + 1, _strategy);
-                if (!String.IsNullOrWhiteSpace(text))
+                if (!string.IsNullOrWhiteSpace(text))
                     sb.Append(_iso88591.GetString(bytes: Encoding.Convert(_iso88591, _iso88591, _iso88591.GetBytes(text))));
             }
 
